@@ -1,0 +1,16 @@
+$gray: #E4E4E4;
+$blue: #02D3DE;
+
+body {
+  background: $gray;
+
+  h1 {
+    color: $blue;
+  }
+
+  .pic {
+    background: url(/images/fox.jpg) 0 0 no-repeat;
+    width: 352px;
+    height: 450px;
+  }
+}
