@@ -5,8 +5,6 @@ const webpack = require('webpack');
 module.exports = {
   context: `${__dirname}/app`,
   entry: {
-    // main: ['webpack-dev-server/client', 'webpack/hot/dev-server', './main.js']
-    // main: ['webpack/hot/dev-server', './main.js']
     main: './main.js'
   },
   output: {
@@ -46,14 +44,15 @@ module.exports = {
       { from: 'index.html' },
       { from: 'images', to: 'images' }
     ]),
-    // new webpack.HotModuleReplacementPlugin()
   ],
 
   devServer: {
     host: 'localhost',
     port: 8080,
     outputPath: './dist',
-    contentBase: `${__dirname}/dist`
-    // hot: true
+    contentBase: `${__dirname}/dist`,
+    proxy: {
+      '*': 'http://localhost:3000'
+    }
   }
 };
