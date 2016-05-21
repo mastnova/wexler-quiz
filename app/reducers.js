@@ -10,8 +10,18 @@ function questions(state = [], action) {
   }
 }
 
+function user(state = { currentQuestion: 1, answers: [] }, action) {
+  switch (action.type) {
+    case 'changequestion':
+      return state;
+    default:
+      return state;
+  }
+}
+
 const rootReducer = combineReducers({
-  questions
+  questions,
+  user
 });
 
 export default rootReducer;
