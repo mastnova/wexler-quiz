@@ -3,4 +3,17 @@ import './css/main.scss';
 
 require('bootstrap');
 
-console.log('script loaded');
+import { Provider } from 'react-redux';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import configureStore from './configureStore';
+import { fetchQuestions } from './actions.js';
+
+const store = configureStore();
+store.dispatch(fetchQuestions());
+
+ReactDOM.render((
+	<Provider store={store}>
+		<p>react</p>
+	</Provider>
+), document.getElementById('quiz'));
