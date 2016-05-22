@@ -10,7 +10,10 @@ class QuestionAnswers extends Component {
             key={answer.id}
           >
             <label>
-              <input name="answer"
+              <input
+                checked = {answer.id === this.props.activeId ? 'checked' : ''}
+                name="answer"
+                onChange={() => this.props.onChangeRadio(answer.id)}
                 type="radio"
                 value={answer.id}
               />
@@ -24,7 +27,9 @@ class QuestionAnswers extends Component {
 }
 
 QuestionAnswers.propTypes = {
-  answers: PropTypes.array
+  activeId: PropTypes.number,
+  answers: PropTypes.array,
+  onChangeRadio: PropTypes.func
 };
 
 export default QuestionAnswers;

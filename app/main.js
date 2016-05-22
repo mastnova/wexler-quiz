@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import configureStore from './configureStore';
-import { fetchQuestions } from './actions.js';
+import { fetchQuestions } from './actions';
 import Question from './containers/Question';
 
 const store = configureStore();

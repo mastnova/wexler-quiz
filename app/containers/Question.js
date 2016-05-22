@@ -1,27 +1,54 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { changeQuestion } from '../actions';
 import QuestionHeader from '../components/QuestionHeader';
 import QuestionText from '../components/QuestionText';
 import QuestionAnswers from '../components/QuestionAnswers';
 
-
 class Question extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      activeRadioId: null
+    };
+  }
+
+  onChangeRadio(id) {
+    this.setState({
+      activeRadioId: id
+    });
+  }
+
+  onClickAccept() {
+    this.props.dispatch(changeQuestion());
+    this.setState({
+      activeRadioId: null
+    });
+  }
 
   render() {
     return (
       <div className="question">
         <QuestionHeader id={this.props.id} />
         <QuestionText text={this.props.text} />
-        <QuestionAnswers answers={this.props.answers} />
-        <button>Принять</button>
+        <QuestionAnswers
+          activeId={this.state.activeRadioId}
+          answers={this.props.answers}
+          onChangeRadio={this.onChangeRadio.bind(this)}
+        />
+        <button
+          disabled={this.state.activeRadioId === null ? 'disabled' : ''}
+          onClick={this.onClickAccept.bind(this)}
+        >{'Принять'}</button>
       </div>
     );
   }
-
 }
 
 Question.propTypes = {
   answers: PropTypes.array,
+  dispatch: PropTypes.func,
   id: PropTypes.number,
   text: PropTypes.string
 };

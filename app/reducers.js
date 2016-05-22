@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { SET_QUESTIONS } from './actions.js';
+import { SET_QUESTIONS, CHANGE_QUESTION } from './actions';
 
 function questions(state = [], action) {
   switch (action.type) {
@@ -12,8 +12,8 @@ function questions(state = [], action) {
 
 function user(state = { currentQuestion: 1, answers: [] }, action) {
   switch (action.type) {
-    case 'changequestion':
-      return state;
+    case CHANGE_QUESTION:
+      return Object.assign({}, state, { currentQuestion: state.currentQuestion + 1 });
     default:
       return state;
   }
