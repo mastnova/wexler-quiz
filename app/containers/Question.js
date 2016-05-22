@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { changeQuestion } from '../actions';
+import { changeQuestion, saveAnswer } from '../actions';
 import QuestionHeader from '../components/QuestionHeader';
 import QuestionText from '../components/QuestionText';
 import QuestionAnswers from '../components/QuestionAnswers';
@@ -21,6 +21,10 @@ class Question extends Component {
   }
 
   onClickAccept() {
+    const questionId = this.props.id;
+    const answerId = this.state.activeRadioId;
+
+    this.props.dispatch(saveAnswer(questionId, answerId));
     this.props.dispatch(changeQuestion());
     this.setState({
       activeRadioId: null

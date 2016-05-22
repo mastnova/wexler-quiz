@@ -13,6 +13,15 @@ import Question from './containers/Question';
 const store = configureStore();
 store.dispatch(fetchQuestions());
 
+store.subscribe(() => {
+  const userState = store.getState().user;
+  const wexlerSession = {
+    answers: userState.answers,
+    currentQuestion: userState.currentQuestion
+  };
+  localStorage.wexlerSession = JSON.stringify(wexlerSession);
+});
+
 ReactDOM.render((
   <Provider store={store}>
     <Question />
