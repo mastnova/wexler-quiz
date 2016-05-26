@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { changeQuestion, saveAnswer } from '../actions';
+import { changeQuestion, saveAnswer, showResults } from '../actions';
 import QuestionHeader from '../components/QuestionHeader';
 import QuestionText from '../components/QuestionText';
 import QuestionAnswers from '../components/QuestionAnswers';
@@ -23,9 +23,14 @@ class Question extends Component {
   onClickAccept() {
     const questionId = this.props.id;
     const answerId = this.state.activeRadioId;
+    const numberOfQuestions = this.props.numberOfQuestions;
 
     this.props.dispatch(saveAnswer(questionId, answerId));
-    this.props.dispatch(changeQuestion());
+    if (numberOfQuestions === questionId ) {
+      this.props.dispatch(showResults());
+    } else {
+      this.props.dispatch(changeQuestion());
+    }
     this.setState({
       activeRadioId: null
     });
@@ -54,6 +59,7 @@ Question.propTypes = {
   answers: PropTypes.array,
   dispatch: PropTypes.func,
   id: PropTypes.number,
+  numberOfQuestions: PropTypes.number,
   text: PropTypes.string
 };
 
@@ -68,6 +74,7 @@ const mapStateToProps = (state) => {
   });
   const question = filteredList[0] || {};
   return {
+    numberOfQuestions: questionList.length,
     id: question.id || 0,
     text: question.text || '',
     answers: question.answers || []

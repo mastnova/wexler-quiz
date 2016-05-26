@@ -1,5 +1,11 @@
 import { combineReducers } from 'redux';
-import { SET_QUESTIONS, CHANGE_QUESTION, SAVE_ANSWER } from './actions';
+import {
+  SET_QUESTIONS,
+  CHANGE_QUESTION,
+  SAVE_ANSWER,
+  START_QUIZ,
+  SHOW_RESULTS
+} from './actions';
 
 function questions(state = [], action) {
   switch (action.type) {
@@ -28,9 +34,21 @@ function user(state = localStorage.wexlerSession ?
   }
 }
 
+function quizState(state = localStorage.quizState || 'not_started', action) {
+  switch (action.type) {
+    case START_QUIZ:
+      return 'in_progress';
+    case SHOW_RESULTS:
+      return 'ended';
+    default:
+      return state;
+  }
+}
+
 const rootReducer = combineReducers({
   questions,
-  user
+  user,
+  quizState
 });
 
 export default rootReducer;

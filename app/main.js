@@ -8,22 +8,24 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import configureStore from './configureStore';
 import { fetchQuestions } from './actions';
-import Question from './containers/Question';
+import Quiz from './containers/Quiz';
 
 const store = configureStore();
 store.dispatch(fetchQuestions());
 
 store.subscribe(() => {
-  const userState = store.getState().user;
+  const state = store.getState();
   const wexlerSession = {
-    answers: userState.answers,
-    currentQuestion: userState.currentQuestion
+    answers: state.user.answers,
+    currentQuestion: state.user.currentQuestion,
+    quizState: state.user.quizState
   };
   localStorage.wexlerSession = JSON.stringify(wexlerSession);
+  localStorage.quizState = state.quizState;
 });
 
 ReactDOM.render((
   <Provider store={store}>
-    <Question />
+    <Quiz />
   </Provider>
 ), document.getElementById('quiz'));
