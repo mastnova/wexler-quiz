@@ -1,0 +1,17 @@
+[
+  { "questionId": 1, "answerId": 4 },
+  { "questionId": 2, "answerId": 3 },
+  { "questionId": 3, "answerId": 2 },
+  { "questionId": 4, "answerId": 2 },
+  { "questionId": 5, "answerId": 2 },
+  { "questionId": 6, "answerId": 3 },
+  { "questionId": 7, "answerId": 2 },
+  { "questionId": 8, "answerId": 4 },
+  { "questionId": 9, "answerId": 3 },
+  { "questionId": 10, "answerId": 4 },
+  { "questionId": 11, "answerId": 2 },
+  { "questionId": 12, "answerId": 3 },
+  { "questionId": 13, "answerId": 3 },
+  { "questionId": 14, "answerId": 1 },
+  { "questionId": 15, "answerId": 3 }
+]

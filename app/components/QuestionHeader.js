@@ -11,7 +11,7 @@ class QuestionHeader extends Component {
   }
 }
 
-QuestionHeader.propsTypes = {
+QuestionHeader.propTypes = {
   id: PropTypes.number
 };
 

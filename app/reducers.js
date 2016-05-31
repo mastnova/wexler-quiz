@@ -4,7 +4,8 @@ import {
   CHANGE_QUESTION,
   SAVE_ANSWER,
   START_QUIZ,
-  SHOW_RESULTS
+  SHOW_RESULTS,
+  SET_RESULT
 } from './actions';
 
 function questions(state = [], action) {
@@ -18,7 +19,7 @@ function questions(state = [], action) {
 
 function user(state = localStorage.wexlerSession ?
     JSON.parse(localStorage.wexlerSession)
-    : { currentQuestion: 1, answers: [] }, action) {
+    : { currentQuestion: 1, answers: [], result: {} }, action) {
   let answers = [];
   switch (action.type) {
     case CHANGE_QUESTION:
@@ -29,6 +30,8 @@ function user(state = localStorage.wexlerSession ?
         answerId: action.answerId
       });
       return Object.assign({}, state, { answers });
+    case SET_RESULT:
+      return Object.assign({}, state, { result: action.result });
     default:
       return state;
   }

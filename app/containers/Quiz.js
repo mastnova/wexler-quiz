@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { startQuiz } from '../actions';
+import { startQuiz, fetchResult } from '../actions';
 import Question from './Question';
 import QuizBeginning from '../components/QuizBeginning';
 import QuizResults from '../components/QuizResults';
@@ -9,6 +9,10 @@ class Quiz extends Component {
 
   onClickStart() {
     this.props.dispatch(startQuiz());
+  }
+
+  getResult() {
+    this.props.dispatch(fetchResult(this.props.answers));
   }
 
   render() {
@@ -21,7 +25,11 @@ class Quiz extends Component {
         currentPage = <Question />;
         break;
       case 'ended':
-        currentPage = <QuizResults />;
+        currentPage = (
+          <QuizResults
+            getResult={this.getResult.bind(this)}
+            result={this.props.result}
+          />);
         break;
       default:
         currentPage = <QuizBeginning />;
@@ -35,10 +43,16 @@ class Quiz extends Component {
 }
 
 Quiz.propTypes = {
+  answers: PropTypes.array.isRequired,
   dispatch: PropTypes.func.isRequired,
-  quizState: PropTypes.string.isRequired
+  quizState: PropTypes.string.isRequired,
+  result: PropTypes.object
 };
 
-const mapStateToProps = (state) => ({ quizState: state.quizState });
+const mapStateToProps = (state) => ({
+  quizState: state.quizState,
+  answers: state.user.answers,
+  result: state.user.result
+});
 
 export default connect(mapStateToProps)(Quiz);

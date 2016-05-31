@@ -5,6 +5,7 @@ export const CHANGE_QUESTION = 'CHANGE_QUESTION';
 export const SAVE_ANSWER = 'SAVE_ANSWER';
 export const START_QUIZ = 'START_QUIZ';
 export const SHOW_RESULTS = 'SHOW_RESULTS';
+export const SET_RESULT = 'SET_RESULT';
 
 function setQuestions(data) {
   return { type: SET_QUESTIONS, data };
@@ -36,4 +37,30 @@ export function startQuiz() {
 
 export function showResults() {
   return { type: SHOW_RESULTS };
+}
+
+function setResult(data) {
+  return { type: SET_RESULT, result: data };
+}
+
+export function fetchResult(answers) {
+  return dispatch => {
+    fetch('api/result', {
+      method: 'POST',
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      }),
+      body: JSON.stringify({
+        answers
+      })
+    }).then(response => {
+      if (response.ok) {
+        response.json().then(data => {
+          dispatch(setResult(data));
+        });
+      } else {
+        console.log('connection error!');
+      }
+    });
+  };
 }

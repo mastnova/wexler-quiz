@@ -18,7 +18,7 @@ store.subscribe(() => {
   const wexlerSession = {
     answers: state.user.answers,
     currentQuestion: state.user.currentQuestion,
-    quizState: state.user.quizState
+    result: state.user.result
   };
   localStorage.wexlerSession = JSON.stringify(wexlerSession);
   localStorage.quizState = state.quizState;

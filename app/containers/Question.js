@@ -26,7 +26,7 @@ class Question extends Component {
     const numberOfQuestions = this.props.numberOfQuestions;
 
     this.props.dispatch(saveAnswer(questionId, answerId));
-    if (numberOfQuestions === questionId ) {
+    if (numberOfQuestions === questionId) {
       this.props.dispatch(showResults());
     } else {
       this.props.dispatch(changeQuestion());
