@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint app; exit 0",
     "build": "npm run lint && webpack",
-    "start": "webpack-dev-server && webpack --watch"
+    "start": "webpack-dev-server --inline --hot"
   },
   "repository": {
     "type": "git",
