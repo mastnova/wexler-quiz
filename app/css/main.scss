@@ -36,3 +36,55 @@ body {
     text-shadow: 2px 2px 1px #000;
   }
 }
+
+.features {
+  height: 300px;
+  padding-top: 45px;
+}
+
+.feature {
+  &__pic {
+    margin: 0 auto;
+
+    &_brain {
+      width: 128px;
+      height: 128px;
+      background: url(/images/brain-icon.png) 0 0 no-repeat;
+      background-size: contain;
+    }
+
+    &_compare {
+      width: 128px;
+      height: 128px;
+      background: url(/images/compare-icon.png) 0 0 no-repeat;
+      background-size: contain;
+    }
+
+    &_recomend {
+      width: 128px;
+      height: 128px;
+      background: url(/images/recomend-icon.png) 0 0 no-repeat;
+      background-size: contain;
+    }
+
+    &_social {
+      height: 128px;
+      width: 170px;
+      background: url(/images/social-icon.png) 0 0 no-repeat;
+      background-size: contain;
+    }
+  }
+
+  &__title {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  &__desc {
+    text-align: center;
+    margin: 5px auto;
+    width: 205px;
+  }
+}
