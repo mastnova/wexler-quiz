@@ -4,10 +4,11 @@ class QuizBeginning extends Component {
 
   render() {
     return (
-      <div>
-        <p>{'Начнтие тест'}</p>
-        <button onClick={this.props.onClickStart}>{'Начать'}</button>
-      </div>
+      <button className="button-start"
+        onClick={this.props.onClickStart}
+      >
+        <span>{'Начать тест'}</span>
+      </button>
     );
   }
 }
