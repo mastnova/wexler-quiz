@@ -38,18 +38,21 @@ class Question extends Component {
 
   render() {
     return (
-      <div className="question">
+      <div className="panel panel-primary">
         <QuestionHeader id={this.props.id} />
-        <QuestionText text={this.props.text} />
-        <QuestionAnswers
-          activeId={this.state.activeRadioId}
-          answers={this.props.answers}
-          onChangeRadio={this.onChangeRadio.bind(this)}
-        />
-        <button
-          disabled={this.state.activeRadioId === null ? 'disabled' : ''}
-          onClick={this.onClickAccept.bind(this)}
-        >{'Принять'}</button>
+        <div className="panel-body">
+          <QuestionText text={this.props.text} />
+          <QuestionAnswers
+            activeId={this.state.activeRadioId}
+            answers={this.props.answers}
+            onChangeRadio={this.onChangeRadio.bind(this)}
+          />
+          <button
+            className="btn btn-lg btn-primary"
+            disabled={this.state.activeRadioId === null ? 'disabled' : ''}
+            onClick={this.onClickAccept.bind(this)}
+          >{'принять'}</button>
+        </div>
       </div>
     );
   }

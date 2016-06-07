@@ -11,6 +11,12 @@ body {
   background: $gray;
 }
 
+.btn {
+  outline: none;
+  margin: 0 auto;
+  display: block;
+}
+
 .header {
   height: 400px;
   background: url(/images/header-bg.jpg) 0 0 no-repeat;
@@ -145,3 +151,44 @@ body {
     margin: 0 auto;
   }
 }
+
+.panel-heading {
+  text-align: center;
+}
+
+.list-group {
+  width: 300px;
+  margin: 20px auto;
+}
+
+.list-group-item {
+  padding: 0;
+
+  label {
+    display: block;
+    padding: 10px 15px;
+    margin: 0;
+    cursor: pointer;
+    text-align: center;
+
+    &:hover {
+      color: #8a6d3b;
+      background-color: #fcf8e3;
+    }
+  }
+
+  &.list-group-item-info {
+    label:hover {
+      color: #31708f;
+      background-color: #d9edf7;
+    }
+  }
+}
+
+.question-text {
+  font-size: 17px;
+  text-align: center;
+  width: 600px;
+  margin: 0 auto;
+}
+

@@ -4,7 +4,7 @@ class QuestionText extends Component {
 
   render() {
     return (
-      <div className="question__question-text">
+      <div className="question-text">
         {this.props.text}
       </div>
     );

@@ -4,8 +4,8 @@ class QuestionHeader extends Component {
 
   render() {
     return (
-      <div className="question__question-header">
-        {`Вопрос ${this.props.id} из 15`}
+      <div className="panel-heading">
+        <h3 className="panel-title">{`Вопрос ${this.props.id} из 15`}</h3>
       </div>
     );
   }
