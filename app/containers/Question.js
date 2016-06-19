@@ -27,22 +27,27 @@ class Question extends Component {
     const numberOfQuestions = this.props.numberOfQuestions;
 
     this.props.dispatch(saveAnswer(questionId, answerId));
-    if (numberOfQuestions === questionId) {
-      this.props.dispatch(showResults());
-    } else {
-      this.props.dispatch(changeQuestion());
-    }
-    this.setState({
-      activeRadioId: null
-    });
+    jQuery('#quiz .panel-body').addClass('fade');
+    setTimeout(() => {
+      if (numberOfQuestions === questionId) {
+        this.props.dispatch(showResults());
+      } else {
+        this.props.dispatch(changeQuestion());
+        this.setState({
+          activeRadioId: null
+        });
+      }
+      jQuery('#quiz .panel-body').removeClass('fade');
+    }, 500);
+
   }
 
   render() {
     return (
       <div className="panel panel-primary">
         <QuestionHeader id={this.props.id} />
+        <ProgressBar progress={this.props.progress}/>
         <div className="panel-body">
-          <ProgressBar progress={this.props.progress}/>
           <QuestionText text={this.props.text} />
           <QuestionAnswers
             activeId={this.state.activeRadioId}

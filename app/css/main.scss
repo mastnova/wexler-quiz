@@ -2,6 +2,15 @@ $gray: #F0F0F0;
 $blue: #02D3DE;
 $white: #F7F7FE;
 
+@keyframes show {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -12,7 +21,7 @@ body {
 }
 
 .btn {
-  outline: none;
+  outline: none !important;
   margin: 0 auto;
   display: block;
 }
@@ -150,10 +159,27 @@ body {
     width: 850px;
     margin: 0 auto;
   }
+
+  .progress {
+    margin: 20px 20px 0;
+  }
+}
+
+.panel {
+  animation: show 1.5s;
 }
 
 .panel-heading {
   text-align: center;
+}
+
+.panel-body {
+  opacity: 1;
+  transition: all .5s;
+
+  &.fade {
+    opacity: 0;
+  }
 }
 
 .list-group {
@@ -190,5 +216,35 @@ body {
   text-align: center;
   width: 600px;
   margin: 0 auto;
+}
+
+.result {
+  position: relative;
+
+  .progress-bar {
+    transition-duration: 5s;
+  }
+
+  &__calculate {
+    position: absolute;
+    top: 25%;
+    width: 95%;
+    pointer-events: none;
+  }
+
+  &__finished {
+    opacity: 0;
+    transition: all 2s 1s;
+  }
+
+  &.done {
+    .result__finished {
+      opacity: 1;
+    }
+    .result__calculate {
+      opacity: 0;
+      transition: all 2s;
+    }
+  }
 }
 
