@@ -4,6 +4,7 @@ import { changeQuestion, saveAnswer, showResults } from '../actions';
 import QuestionHeader from '../components/QuestionHeader';
 import QuestionText from '../components/QuestionText';
 import QuestionAnswers from '../components/QuestionAnswers';
+import ProgressBar from '../components/ProgressBar';
 
 class Question extends Component {
 
@@ -41,6 +42,7 @@ class Question extends Component {
       <div className="panel panel-primary">
         <QuestionHeader id={this.props.id} />
         <div className="panel-body">
+          <ProgressBar progress={this.props.progress}/>
           <QuestionText text={this.props.text} />
           <QuestionAnswers
             activeId={this.state.activeRadioId}
@@ -63,10 +65,12 @@ Question.propTypes = {
   dispatch: PropTypes.func,
   id: PropTypes.number,
   numberOfQuestions: PropTypes.number,
+  progress: PropTypes.number.isRequired,
   text: PropTypes.string
 };
 
 const mapStateToProps = (state) => {
+  let progress = 0;
   const questionList = state.questions;
   const currentQuestionId = state.user.currentQuestion;
   const filteredList = questionList.filter((element) => {
@@ -76,11 +80,15 @@ const mapStateToProps = (state) => {
     return 0;
   });
   const question = filteredList[0] || {};
+  if (question.id > 0 && questionList.length > 0) {
+    progress = ((question.id - 1) / questionList.length) * 100;
+  }
   return {
     numberOfQuestions: questionList.length,
     id: question.id || 0,
     text: question.text || '',
-    answers: question.answers || []
+    answers: question.answers || [],
+    progress: progress
   };
 };
 
