@@ -13,7 +13,7 @@ function setQuestions(data) {
 
 export function fetchQuestions() {
   return dispatch => {
-    fetch('/api/questions').then(response => {
+    fetch('http://oblroddomtver.ru/api/wechsler/questions').then(response => {
       if (response.ok) {
         response.json().then(data => {
           dispatch(setQuestions(data));
@@ -45,8 +45,9 @@ function setResult(data) {
 
 export function fetchResult(answers) {
   return dispatch => {
-    fetch('api/result', {
+    fetch('http://oblroddomtver.ru/api/wechsler/result', {
       method: 'POST',
+      mode: 'cors',
       headers: new Headers({
         'Content-Type': 'application/json'
       }),
