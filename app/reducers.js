@@ -8,6 +8,30 @@ import {
   SET_RESULT
 } from './actions';
 
+try {
+  localStorage;
+} catch (err) {
+  var localStorage = null;
+}
+
+let defaultUserState;
+let defaultQuizState;
+if (localStorage && localStorage.wexlerSession) {
+  defaultUserState = JSON.parse(localStorage.wexlerSession);
+} else {
+  defaultUserState = {
+    currentQuestion: 1,
+    answers: [],
+    result: {}
+  };
+}
+
+if (localStorage && localStorage.quizState) {
+  defaultQuizState = localStorage.quizState;
+} else {
+  defaultQuizState = 'not_started';
+}
+
 function questions(state = [], action) {
   switch (action.type) {
     case SET_QUESTIONS:
@@ -17,9 +41,7 @@ function questions(state = [], action) {
   }
 }
 
-function user(state = localStorage.wexlerSession ?
-    JSON.parse(localStorage.wexlerSession)
-    : { currentQuestion: 1, answers: [], result: {} }, action) {
+function user(state = defaultUserState, action) {
   let answers = [];
   switch (action.type) {
     case CHANGE_QUESTION:
@@ -37,7 +59,7 @@ function user(state = localStorage.wexlerSession ?
   }
 }
 
-function quizState(state = localStorage.quizState || 'not_started', action) {
+function quizState(state = defaultQuizState, action) {
   switch (action.type) {
     case START_QUIZ:
       return 'in_progress';
